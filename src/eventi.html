@@ -1,0 +1,34 @@
+<!--
+title: Eventi
+description: Giornate di studio, seminari e incontri organizzati da AFIPS e dal Centro Coppia e Famiglia.
+nav: scientifica
+-->
+<section class="page-head rel">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html">Home</a> · Attività scientifica</p>
+    <h1>Eventi</h1>
+    <p>Giornate di studio, seminari, incontri del Laboratorio e attività del Centro Coppia e Famiglia.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="cal-frame" id="calendario" data-src="">
+      <div class="notice" id="cal-placeholder" style="margin:20px">
+        <p><strong>Il calendario degli eventi è in aggiornamento.</strong> Per informazioni sulle prossime iniziative scrivi a <a href="mailto:centrocoppiafamiglia@gmail.com">centrocoppiafamiglia@gmail.com</a>.</p>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:12px" id="cal-note" hidden>Il calendario è fornito da Google Calendar: caricandolo, Google può impostare cookie propri. <a href="privacy.html">Informativa</a>.</p>
+  </div>
+</section>
+<script>
+(function(){
+  var box=document.getElementById('calendario'); var src=box.getAttribute('data-src');
+  if(!src) return;
+  var ph=document.getElementById('cal-placeholder'); document.getElementById('cal-note').hidden=false;
+  ph.innerHTML='<p>Il calendario è ospitato su Google Calendar.</p><p style="margin-top:12px"><button class="btn primary" type="button" id="cal-load">Mostra il calendario</button></p>';
+  document.getElementById('cal-load').addEventListener('click',function(){
+    box.innerHTML='<iframe title="Calendario eventi AFIPS" loading="lazy" src="'+src+'"></iframe>';
+  });
+})();
+</script>

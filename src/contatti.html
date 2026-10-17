@@ -1,0 +1,74 @@
+<!--
+title: Contatti
+description: Contatti AFIPS e Centro Coppia e Famiglia: Via L. Maremonti 41, Lecce. Email centrocoppiafamiglia@gmail.com, telefono +39 366 531 7960. Richiedi un appuntamento online.
+nav: contatti
+-->
+<section class="page-head rel">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html">Home</a> · Contatti</p>
+    <h1>Contatti</h1>
+    <p>Che tu voglia saperne di più sui nostri percorsi formativi, richiedere una consulenza o semplicemente entrare in contatto con noi, ti risponderemo con cura e tempestività.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="wrap cols3">
+    <div>
+      <span class="eyebrow">Sede operativa</span>
+      <p style="margin-top:8px">Via L. Maremonti, 41<br>I piano, interno 3<br>73100 Lecce</p>
+      <p style="margin-top:8px"><a href="https://www.google.com/maps/search/?api=1&amp;query=Via+L.+Maremonti+41+73100+Lecce" rel="noopener">Apri in Google Maps</a></p>
+    </div>
+    <div>
+      <span class="eyebrow">Sede legale</span>
+      <p style="margin-top:8px">C.ne Casilina, 8<br>Roma</p>
+    </div>
+    <div>
+      <span class="eyebrow">Informazioni e appuntamenti</span>
+      <p style="margin-top:8px"><a href="mailto:centrocoppiafamiglia@gmail.com">centrocoppiafamiglia@gmail.com</a><br><a href="tel:+393665317960">+39 366 531 7960</a></p>
+    </div>
+  </div>
+</section>
+<section class="section alt" id="appuntamento">
+  <div class="wrap two">
+    <div class="prose">
+      <span class="eyebrow">Centro Coppia e Famiglia</span>
+      <h2 style="margin-top:8px">Richiedi un appuntamento</h2>
+      <p>Compila il modulo: ti ricontatteremo per concordare il primo colloquio.</p>
+      <p class="hint">Per favore non inserire nel messaggio dettagli clinici o informazioni sensibili: bastano poche righe sul motivo della richiesta. Ne parleremo durante il colloquio.</p>
+      <ul class="prices" style="margin-top:20px">
+        <li>Primo colloquio individuale <b>30 €</b></li>
+        <li>Primo colloquio di coppia <b>40 €</b></li>
+        <li>Primo colloquio familiare <b>50 €</b></li>
+      </ul>
+    </div>
+    <form class="form" id="form-appuntamento" data-endpoint="" novalidate>
+      <div class="row">
+        <div class="field"><label for="f-nome">Nome *</label><input id="f-nome" name="nome" autocomplete="given-name" required></div>
+        <div class="field"><label for="f-cognome">Cognome *</label><input id="f-cognome" name="cognome" autocomplete="family-name" required></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="f-tel">Telefono *</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      </div>
+      <div class="field">
+        <label for="f-servizio">Per chi è la richiesta</label>
+        <select id="f-servizio" name="servizio">
+          <option>Un bambino</option>
+          <option>Un adolescente</option>
+          <option selected>Un adulto (individuale)</option>
+          <option>Una coppia</option>
+          <option>Una famiglia</option>
+          <option>Altro / informazioni</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-motivo">Motivo della richiesta *</label>
+        <textarea id="f-motivo" name="motivo" required maxlength="1000" placeholder="Poche righe, senza dettagli clinici"></textarea>
+      </div>
+      <label class="check"><input type="checkbox" id="f-privacy" name="privacy" required> <span>Ho letto l'<a href="privacy.html">informativa privacy</a> e acconsento al trattamento dei dati per essere ricontattato. *</span></label>
+      <div class="hp" aria-hidden="true"><label for="f-web">Non compilare</label><input id="f-web" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+      <div><button class="btn primary" type="submit">Invia la richiesta</button></div>
+      <p class="form-msg" id="form-msg" role="status" hidden></p>
+    </form>
+  </div>
+</section>
