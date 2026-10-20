@@ -10,7 +10,7 @@ Ogni file in src/ inizia con un blocco di intestazione:
 seguito dal contenuto della pagina (solo il <main>).
 Uso:  python3 build.py
 """
-import re, pathlib, html
+import re, pathlib, html, json, datetime
 
 ROOT = pathlib.Path(__file__).parent
 SRC = ROOT / "src"
@@ -130,8 +130,30 @@ TEMPLATE = """<!doctype html>
 """
 
 
+# Dati strutturati per Google (solo in home)
+ORG_JSONLD = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AFIPS – Associazione per la Formazione e l'Intervento PsicoSociale",
+    "alternateName": "AFIPS",
+    "url": SITE_URL + "/",
+    "logo": SITE_URL + "/assets/img/logo-afips.png",
+    "email": EMAIL,
+    "telephone": TEL,
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via L. Maremonti, 41",
+        "postalCode": "73100",
+        "addressLocality": "Lecce",
+        "addressRegion": "LE",
+        "addressCountry": "IT",
+    },
+}
+
+
 def build():
     pages = sorted(SRC.glob("*.html"))
+    sitemap = []
     for p in pages:
         raw = p.read_text(encoding="utf-8")
         m = re.match(r"\s*<!--(.*?)-->\s*", raw, re.S)
@@ -150,6 +172,10 @@ def build():
         extra = ""
         if meta.get("robots"):
             extra += f'\n<meta name="robots" content="{meta["robots"]}">'
+        elif p.stem != "404":
+            sitemap.append(url)
+        if p.stem == "index":
+            extra += '\n<script type="application/ld+json">' + json.dumps(ORG_JSONLD, ensure_ascii=False) + '</script>'
         out = TEMPLATE.format(
             title_full=html.escape(title_full, quote=False),
             og_title=html.escape(title_full),
@@ -160,6 +186,11 @@ def build():
         )
         (ROOT / p.name).write_text(out, encoding="utf-8")
         print("ok", p.name)
+    today = datetime.date.today().isoformat()
+    urls = "".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in sitemap)
+    (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n', encoding="utf-8")
+    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
+    print("ok sitemap.xml, robots.txt")
 
 
 if __name__ == "__main__":
